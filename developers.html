@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Developers | OpenShelf</title>
+
+    <style>
+        :root {
+            --bg: #f7f4f1;
+            --white: #ffffff;
+            --primary: #7b5c46;
+            --primary-dark: #5f4332;
+            --secondary: #c8a58a;
+            --text: #333333;
+            --muted: #6e6e6e;
+            --border: #ece2da;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            --radius: 18px;
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, #f8f5f2 0%, #f4efe9 100%);
+            color: var(--text);
+            font-family: Arial, sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-text small {
+            font-size: 11px;
+            font-weight: 600;
+            opacity: 0.9;
+            letter-spacing: 0.2px;
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(123, 92, 70, 0.96);
+            color: white;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        .nav-container {
+            width: min(1150px, 92%);
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 14px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.16);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .menu-btn {
+            display: none;
+            background: white;
+            color: var(--primary-dark);
+            border: none;
+            border-radius: 10px;
+            padding: 10px 14px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            padding: 10px 14px;
+            border-radius: 10px;
+            transition: 0.25s;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.16);
+        }
+
+        .hero {
+            width: min(1150px, 92%);
+            margin: 28px auto 0;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 24px;
+        }
+
+        .hero-main,
+        .hero-side,
+        .section {
+            background: var(--white);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .hero-main {
+            padding: 44px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-main::after {
+            content: "";
+            position: absolute;
+            right: -70px;
+            top: -70px;
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            background: rgba(200, 165, 138, 0.22);
+        }
+
+        .badge {
+            display: inline-block;
+            background: #f3e9e2;
+            color: var(--primary-dark);
+            padding: 9px 14px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: 48px;
+            line-height: 1.05;
+            color: var(--primary-dark);
+        }
+
+        h2 {
+            margin: 0 0 10px;
+            color: var(--primary-dark);
+            font-size: 30px;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: var(--primary-dark);
+        }
+
+        p {
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        .hero-main p {
+            color: var(--muted);
+            max-width: 720px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 24px 0 18px;
+        }
+
+        .btn {
+            border: none;
+            padding: 13px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #f7f1ec;
+            color: var(--primary-dark);
+            border: 1px solid var(--border);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: #fcfaf8;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .hero-side {
+            padding: 24px;
+            display: grid;
+            gap: 16px;
+        }
+
+        .info-box {
+            background: #faf7f4;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px;
+        }
+
+        .info-box p {
+            margin: 8px 0 0;
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .page-wrap {
+            width: min(1150px, 92%);
+            margin: 24px auto 50px;
+            display: grid;
+            gap: 24px;
+        }
+
+        .section {
+            padding: 30px;
+        }
+
+        .section-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+
+        .section-sub {
+            color: var(--muted);
+            margin: 0;
+        }
+
+        .features-grid,
+        .tools-grid,
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .feature-card,
+        .tool-card,
+        .resource-card {
+            background: #faf7f4;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 22px;
+            transition: 0.25s;
+        }
+
+        .feature-card:hover,
+        .tool-card:hover,
+        .resource-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            background: #f0dfd3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            margin-bottom: 14px;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .project-box {
+            background: #faf7f4;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 22px;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 20px;
+            line-height: 1.8;
+        }
+
+        .announcement-card {
+            background: #faf7f4;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 24px;
+            margin-top: 12px;
+        }
+
+        .announcement-tag {
+            display: inline-block;
+            background: #efe5dd;
+            color: var(--primary-dark);
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .announcement-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 28px 20px;
+            margin-top: 20px;
+        }
+
+        .scroll-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 54px;
+            height: 54px;
+            border: none;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            display: none;
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            display: block;
+        }
+
+        .dark-mode {
+            background: linear-gradient(180deg, #1f1b19 0%, #2d2521 100%);
+            color: #f3efec;
+        }
+
+        .dark-mode .hero-main,
+        .dark-mode .hero-side,
+        .dark-mode .section,
+        .dark-mode .feature-card,
+        .dark-mode .tool-card,
+        .dark-mode .resource-card,
+        .dark-mode .project-box,
+        .dark-mode .info-box,
+        .dark-mode .announcement-card,
+        .dark-mode .stat-card {
+            background: #2f2723;
+            color: #f3efec;
+            border-color: #4a3c34;
+        }
+
+        .dark-mode .hero-main p,
+        .dark-mode .section-sub,
+        .dark-mode .feature-card p,
+        .dark-mode .tool-card p,
+        .dark-mode .resource-card p,
+        .dark-mode .project-box p,
+        .dark-mode .info-box p,
+        .dark-mode .announcement-card p,
+        .dark-mode li {
+            color: #d9cfc8;
+        }
+
+        .dark-mode h1,
+        .dark-mode h2,
+        .dark-mode h3,
+        .dark-mode .logo,
+        .dark-mode .nav-links a,
+        .dark-mode .stat-number {
+            color: #fff4eb;
+        }
+
+        .dark-mode .navbar {
+            background: rgba(43, 35, 30, 0.96);
+        }
+
+        .dark-mode .btn-secondary {
+            background: #3b302a;
+            color: #fff;
+            border-color: #514238;
+        }
+
+        @media (max-width: 980px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid,
+            .tools-grid,
+            .resource-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.08);
+                padding: 12px;
+                border-radius: 14px;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-container {
+                flex-wrap: wrap;
+            }
+
+            .hero-main {
+                padding: 28px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .hero-stats,
+            .features-grid,
+            .tools-grid,
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="nav-container">
+                    <div class="logo">
+            <div class="logo-icon">📚</div>
+            <div class="logo-text">
+                <span>OpenShelf</span>
+                <small>Online Library Management System</small>
+            </div>
+        </div>
+
+            <button class="menu-btn" id="menuBtn">☰ Menu</button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="mainPage_final.html">Home</a>
+                <a href="users.html">Users</a>
+                <a href="developers.html" class="active">Developers</a>
+                <a href="#guidelines">Guidelines</a>
+                <a href="#announcements">Announcements</a>
+                <a href="#resources">Resources</a>
+            </nav>
+        </div>
+    </header>
+
+    <div style="display:flex; justify-content:flex-end; width:min(1150px,92%); margin:10px auto;">
+        <button id="darkToggle" class="btn btn-secondary">🌙 Dark Mode</button>
+    </div>
+
+    <section class="hero">
+        <div class="hero-main">
+            <span class="badge">Developer Portal</span>
+            <h1>Contributors & Developers</h1>
+            <p>
+                Welcome to the OpenShelf developer community. This page provides contribution
+                guidelines, communication channels, developer conduct, project resources,
+                and quick access to the GitHub repository.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="https://github.com/Zain-A77/ITSE476" target="_blank" class="btn btn-primary">Open GitHub</a>
+                <a href="#guidelines" class="btn btn-secondary">Contribution Guide</a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <span class="stat-number">5+</span>
+                    <span>Core Modules</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">3</span>
+                    <span>Main Pages</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">100%</span>
+                    <span>Academic Project</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-side">
+            <div class="info-box">
+                <h3>Project Name</h3>
+                <p>OpenShelf is the open-source identity for the Online Library Management System.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Repository Access</h3>
+                <p>Use GitHub to review code, submit issues, create pull requests, and track development work.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Open-Source Vision</h3>
+                <p>We aim to build a simple, organized, and collaborative digital library platform.</p>
+            </div>
+        </div>
+    </section>
+
+    <main class="page-wrap">
+
+        <section class="section" id="community">
+            <div class="section-head">
+                <div>
+                    <h2>Developer Community</h2>
+                    <p class="section-sub">Communication channels for contributors and project collaborators</p>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon">💬</div>
+                    <h3>Discussion Forum</h3>
+                    <p>Use GitHub Discussions to ask questions, suggest ideas, and discuss improvements for OpenShelf.</p>
+                    <a href="https://github.com/Zain-A77/ITSE476/discussions" target="_blank" class="btn btn-secondary">Join Discussion</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">🐞</div>
+                    <h3>Issue Tracker</h3>
+                    <p>Report bugs, submit feature requests, and track implementation progress through GitHub Issues.</p>
+                    <a href="https://github.com/Zain-A77/ITSE476/issues" target="_blank" class="btn btn-secondary">Open Issues</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">📧</div>
+                    <h3>Email Contact</h3>
+                    <p>For official collaboration requests or academic coordination, contact the project team directly.</p>
+                    <a href="mailto:team@OpenShelf.dev" class="btn btn-secondary">team@OpenShelf.dev</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="guidelines">
+            <div class="section-head">
+                <div>
+                    <h2>Participation Guidelines</h2>
+                    <p class="section-sub">How contributors should work on the project</p>
+                </div>
+            </div>
+
+            <div class="project-grid">
+                <div class="project-box">
+                    <h3>Contribution Workflow</h3>
+                    <ul>
+                        <li>Fork the repository before making any changes.</li>
+                        <li>Create a separate branch for each feature, enhancement, or bug fix.</li>
+                        <li>Write clear, organized, and readable code.</li>
+                        <li>Test your changes before submitting them.</li>
+                        <li>Use meaningful commit messages.</li>
+                        <li>Submit a pull request with a short explanation of your changes.</li>
+                    </ul>
+                </div>
+
+                <div class="project-box">
+                    <h3>Developer Expectations</h3>
+                    <ul>
+                        <li>Follow the existing design and coding style of the system.</li>
+                        <li>Keep documentation updated when adding new features.</li>
+                        <li>Make sure your contribution matches the project scope.</li>
+                        <li>Communicate with the team before major structural changes.</li>
+                        <li>Review feedback professionally and revise when needed.</li>
+                        <li>Respect deadlines and assigned development responsibilities.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="conduct">
+            <div class="section-head">
+                <div>
+                    <h2>Developers’ Code of Conduct</h2>
+                    <p class="section-sub">Standards for respectful and professional collaboration</p>
+                </div>
+            </div>
+
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="icon">🤝</div>
+                    <h3>Respect</h3>
+                    <p>Respect all contributors, teammates, and reviewers regardless of skill level or role.</p>
+                </div>
+
+                <div class="tool-card">
+                    <div class="icon">🗣️</div>
+                    <h3>Professional Communication</h3>
+                    <p>Use polite and constructive language in discussions, issues, and pull requests.</p>
+                </div>
+
+                <div class="tool-card">
+                    <div class="icon">🌍</div>
+                    <h3>Inclusive Environment</h3>
+                    <p>Maintain a welcoming space free from harmful, offensive, or discriminatory behavior.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="announcements">
+            <div class="section-head">
+                <div>
+                    <h2>Developer Announcements</h2>
+                    <p class="section-sub">Recent updates for contributors</p>
+                </div>
+            </div>
+
+            <div class="announcement-card">
+                <span class="announcement-tag" id="devTag"></span>
+                <h3 id="devTitle"></h3>
+                <p id="devText"></p>
+
+                <div class="announcement-controls">
+                    <button class="btn btn-secondary" id="devPrev">Previous</button>
+                    <button class="btn btn-primary" id="devNext">Next</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="resources">
+            <div class="section-head">
+                <div>
+                    <h2>Developer Resources</h2>
+                    <p class="section-sub">Repository links and project materials for contributors</p>
+                </div>
+            </div>
+
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="icon">📘</div>
+                    <h3>Documentation</h3>
+                    <p>Read project overview, setup notes, and implementation details from the developer documentation file.</p>
+                    <a href="https://github.com/Zain-A77/ITSE476/blob/main/DEVELOPER_DOCUMENTATION.md" target="_blank" class="btn btn-secondary">View Documentation</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="icon">🧩</div>
+                    <h3>Developed Modules</h3>
+                    <p>Review the currently developed parts and system details from the main project documentation.</p>
+                    <a href="https://github.com/Zain-A77/ITSE476/blob/main/README.md" target="_blank" class="btn btn-secondary">View Modules</a>
+                </div>
+
+                <div class="resource-card">
+                    <div class="icon">👥</div>
+                    <h3>Team Tasks</h3>
+                    <p>Track task distribution and responsibilities assigned to each member in the development phase.</p>
+                    <a href="https://github.com/Zain-A77/ITSE476/blob/main/TEAM_TASKS.md" target="_blank" class="btn btn-secondary">View Tasks</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 22px;" class="actions">
+                <a href="https://github.com/Zain-A77/ITSE476" target="_blank" class="btn btn-primary">GitHub Repository</a>
+                <a href="https://github.com/Zain-A77/ITSE476/pulls" target="_blank" class="btn btn-secondary">Pull Requests</a>
+                <a href="https://github.com/Zain-A77/ITSE476/issues" target="_blank" class="btn btn-secondary">Bug Reports</a>
+            </div>
+        </section>
+
+        <section class="section" id="modules">
+            <div class="section-head">
+                <div>
+                    <h2>Current Project Modules</h2>
+                    <p class="section-sub">Main features currently included in OpenShelf</p>
+                </div>
+            </div>
+
+            <div class="project-grid">
+                <div class="project-box">
+                    <h3>Core Functions</h3>
+                    <ul>
+                        <li>User registration and login</li>
+                        <li>Book catalog and search</li>
+                        <li>Borrowing and returning process</li>
+                        <li>Book availability tracking</li>
+                        <li>Administrative management features</li>
+                    </ul>
+                </div>
+
+                <div class="project-box">
+                    <h3>Open-Source Goals</h3>
+                    <ul>
+                        <li>Improve usability for library staff and students</li>
+                        <li>Support future feature expansion</li>
+                        <li>Encourage collaborative development</li>
+                        <li>Provide clean project documentation</li>
+                        <li>Maintain a professional academic repository</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 OpenShelf | Contributors & Developers Page</p>
+    </footer>
+
+    <button class="scroll-top" id="scrollTopBtn">↑</button>
+
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const navLinks = document.getElementById("navLinks");
+        const darkToggle = document.getElementById("darkToggle");
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+        menuBtn.addEventListener("click", () => {
+            navLinks.classList.toggle("show");
+        });
+
+        darkToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+            darkToggle.textContent = document.body.classList.contains("dark-mode")
+                ? "☀️ Light Mode"
+                : "🌙 Dark Mode";
+        });
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 250) {
+                scrollTopBtn.classList.add("show");
+            } else {
+                scrollTopBtn.classList.remove("show");
+            }
+        });
+
+        scrollTopBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        const developerAnnouncements = [
+            {
+                tag: "Repository Update",
+                title: "Initial OpenShelf structure published",
+                text: "The first project structure, pages, and main repository organization have been prepared for Phase 1."
+            },
+            {
+                tag: "Contribution Notice",
+                title: "Follow pull request workflow before submitting code",
+                text: "Please create a separate branch, test your changes, and add a short explanation when opening a pull request."
+            },
+            {
+                tag: "Documentation",
+                title: "Project documentation is being expanded",
+                text: "Contributors should help keep setup guides, module descriptions, and development notes updated."
+            }
+        ];
+
+        let devIndex = 0;
+
+        const devTag = document.getElementById("devTag");
+        const devTitle = document.getElementById("devTitle");
+        const devText = document.getElementById("devText");
+        const devPrev = document.getElementById("devPrev");
+        const devNext = document.getElementById("devNext");
+
+        function renderAnnouncement() {
+            devTag.textContent = developerAnnouncements[devIndex].tag;
+            devTitle.textContent = developerAnnouncements[devIndex].title;
+            devText.textContent = developerAnnouncements[devIndex].text;
+        }
+
+        devPrev.addEventListener("click", () => {
+            devIndex = (devIndex - 1 + developerAnnouncements.length) % developerAnnouncements.length;
+            renderAnnouncement();
+        });
+
+        devNext.addEventListener("click", () => {
+            devIndex = (devIndex + 1) % developerAnnouncements.length;
+            renderAnnouncement();
+        });
+
+        renderAnnouncement();
+    </script>
+
+</body>
+
+</html>
