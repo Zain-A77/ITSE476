@@ -49,7 +49,7 @@ Through this repository, we aim to demonstrate proper use of:
 - Team collaboration
 - Open and clear documentation
 
-## Previous / Related Projects
+## 🔗 Previous / Related Projects
 
 This project builds on our earlier academic work and previous project experience.
 
