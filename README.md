@@ -49,6 +49,13 @@ Through this repository, we aim to demonstrate proper use of:
 - Team collaboration
 - Open and clear documentation
 
+## Previous / Related Projects
+
+This project builds on our earlier academic work and previous project experience.
+
+- [ITSE305 Project Repository](https://github.com/SE305/SE305-Project)
+
+
 ## 🆓 Project License and Freedom
 
 This project is **free and open-source**.  
