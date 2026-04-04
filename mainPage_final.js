@@ -186,14 +186,14 @@ const announcements = [
     text: 'The main page has been fully developed with modern design and interactive components.'
   },
   {
-    tag: 'In Progress',
-    title: 'Users Page In Progress',
-    text: 'The users section is currently under development and will include account access, issue reporting, and borrowing features.'
+    tag: 'Completed',
+    title: 'Users Page Completed',
+    text: 'The Users page has been successfully developed and includes account access, issue reporting, and borrowing features.'
   },
   {
-    tag: 'Coming Soon',
-    title: 'Developers Page Coming Soon',
-    text: 'This section will provide access to the GitHub repository, contribution guidelines, and project documentation.'
+    tag: 'Completed',
+    title: 'Developers Page Completed',
+    text: 'The Developers page is fully available and provides access to the GitHub repository, contribution guidelines, and project documentation.'
   }
 ];
 
