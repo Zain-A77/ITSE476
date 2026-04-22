@@ -198,6 +198,7 @@ Data retrieved ✔</pre>
 
       issueResult.textContent =
         "Issue submitted successfully! (Simulated GitHub submission)";
+         issueResult.style.color = "green";
       issueForm.reset();
     });
   }
