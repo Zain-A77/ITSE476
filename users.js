@@ -190,14 +190,15 @@ Data retrieved ✔</pre>
       const title = document.getElementById('issueTitle').value;
       const description = document.getElementById('issueDescription').value;
 
-      if (!title || !description) {
+      if (!title.trim() || !description.trim()) {
         issueResult.textContent = "Please fill all fields.";
+        issueResult.style.color = "red";
         return;
       }
 
       issueResult.textContent =
         "Issue submitted successfully! (Simulated GitHub submission)";
-
+        issueResult.style.color = "green";
       issueForm.reset();
     });
   }
