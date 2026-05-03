@@ -12,7 +12,8 @@
 Welcome to  **OpenShelf** repository!  
 
 Our project aims to build a simple and organized web-based library management system that helps manage books, users, and borrowing activities in a more efficient digital way. At the same time, this repository is designed to reflect the principles of **open-source software development**, including collaboration, transparency, documentation, version control, and issue tracking.
-
+## Insatallation and Usage Update
+This project documentation was improved by adding clearer setup instructions, installation steps, and usage guidelines for users and developers.
 ## 👩‍💻 Team Members
 
 - **Zain Asaad Aldallal** — `202209165`
