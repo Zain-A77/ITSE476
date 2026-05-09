@@ -127,3 +127,4 @@ Recent project updates and announcements will be shared through the project webs
 ## 📬 Communication
 
 For discussions, feedback, and collaboration, team members can use GitHub Issues and other approved course communication channels.
+## This project is Developed as part of the ITSE476 Free and Open-Source Software Development course.
