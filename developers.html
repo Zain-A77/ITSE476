@@ -628,7 +628,7 @@
                     <div class="icon">📧</div>
                     <h3>Email Contact</h3>
                     <p>For official collaboration requests or academic coordination, contact the project team directly.</p>
-                    <a href="mailto:team@OpenShelf.dev" class="btn btn-secondary">team@OpenShelf.dev</a>
+                    <a href="mailto:team@OpenShelf.dev" class="btn btn-secondary">open.shelf@e.library.com</a>
                 </div>
             </div>
         </section>
@@ -758,7 +758,7 @@
         <section class="section" id="modules">
             <div class="section-head">
                 <div>
-                    <h2>Current Project Modules</h2>
+                    <h2>Planned Project Modules</h2>
                     <p class="section-sub">Main features currently included in OpenShelf</p>
                 </div>
             </div>
@@ -806,12 +806,31 @@
             navLinks.classList.toggle("show");
         });
 
-        darkToggle.addEventListener("click", () => {
-            document.body.classList.toggle("dark-mode");
-            darkToggle.textContent = document.body.classList.contains("dark-mode")
-                ? "☀️ Light Mode"
-                : "🌙 Dark Mode";
-        });
+const darkToggle = document.getElementById("darkToggle");
+
+function updateDarkButton() {
+    darkToggle.textContent = document.body.classList.contains("dark-mode")
+        ? "☀️ Light Mode"
+        : "🌙 Dark Mode";
+}
+
+if (localStorage.getItem("darkMode") === "enabled") {
+    document.body.classList.add("dark-mode");
+}
+
+updateDarkButton();
+
+darkToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+
+    if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("darkMode", "enabled");
+    } else {
+        localStorage.setItem("darkMode", "disabled");
+    }
+
+    updateDarkButton();
+});
 
         window.addEventListener("scroll", () => {
             if (window.scrollY > 250) {
